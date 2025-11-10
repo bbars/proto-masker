@@ -117,7 +117,7 @@ func (r Runner) processMessage(message *protogen.Message) (*MaskMessage, error) 
 		HasMaskingFields: false,
 		CloneFunc: r.currentGoFile.QualifiedGoIdent(protogen.GoIdent{
 			GoName:       "Clone",
-			GoImportPath: "google.golang.org/protobuf",
+			GoImportPath: "google.golang.org/protobuf/proto",
 		}),
 	}
 
