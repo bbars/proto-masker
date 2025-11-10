@@ -1,0 +1,21 @@
+syntax = "proto3";
+import "google/protobuf/descriptor.proto";
+
+option go_package = "github.com/bbars/proto-masker/pkg;protomaskerpkg";
+
+message MaskerOptions {
+  As as = 1;
+}
+
+extend google.protobuf.FieldOptions {
+  MaskerOptions masker = 47816;
+}
+
+enum As {
+  Unspecified = 0;
+  Generic = 1;
+  Password = 2;
+  Email = 3;
+  Phone = 4;
+  CardPAN = 5;
+}
