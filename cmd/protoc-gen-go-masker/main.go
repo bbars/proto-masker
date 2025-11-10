@@ -54,30 +54,6 @@ func respond(res *pluginpb.CodeGeneratorResponse, err error) {
 }
 
 func input() io.Reader {
-	// TODO: del
-	/*f, err := os.OpenFile("proto.bin", os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0755)
-	if err != nil {
-		panic(err)
-	}
-	if _, err = io.Copy(f, os.Stdin); err != nil {
-		panic(err)
-	}
-	f.Close()*/
-
-	// TODO: del
-	/*for _, s := range os.Args {
-		if _, err := fmt.Fprintln(f, s); err != nil {
-			panic(err)
-		}
-	}*/
-
-	// TODO: del
-	/*in, err := os.Open("proto.bin")
-	if err != nil {
-		panic(err)
-	}
-	return in*/
-
 	return os.Stdin
 }
 
