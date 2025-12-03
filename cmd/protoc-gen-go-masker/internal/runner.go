@@ -2,6 +2,7 @@ package internal
 
 import (
 	"fmt"
+	"log"
 	"runtime/debug"
 
 	protomaskerpkg "github.com/bbars/proto-masker/pkg"
@@ -197,6 +198,20 @@ func (r Runner) doesImplementMask(m *protogen.Message, parents map[protogen.GoId
 
 	if res, ok := r.maskImplementations[m.GoIdent]; ok {
 		return res
+	}
+
+	if m.Desc.IsMapEntry() {
+		if l := len(m.Fields); l != 2 {
+			log.Printf("warning: %s is a map, so descriptor expected to contain 2 fields, actually contains %d\n", m.GoIdent, l)
+			return false
+		}
+
+		if m.Fields[1].Message == nil {
+			return false
+		}
+
+		parents[m.GoIdent] = struct{}{}
+		return r.doesImplementMask(m.Fields[1].Message, parents)
 	}
 
 	if r.isLocal(m.GoIdent) {
