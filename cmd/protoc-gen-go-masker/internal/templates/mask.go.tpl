@@ -17,8 +17,12 @@ package {{ .File.GoPackageName }}
 	}
 
 	func (x *{{ $m.GoIdent.GoName }}) mask() {
+		if x == nil {
+			return
+		}
+
 		{{- if $m.HasMaskingFields }}
-			{{- range $f := .Fields -}}
+			{{ range $f := .Fields -}}
 				{{- if $f.LeaveUnchanged -}}
 					{{ continue }}
 				{{- end -}}
